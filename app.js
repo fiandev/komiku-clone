@@ -1,8 +1,11 @@
 const express = require("express")
 const axios = require("axios")
 const { apiUrl } = require("./config")
+const { getBaseUrl } = require("./helper/functionz")
 const app = express()
 const port = process.env.PORT || 3600
+app.locals({ getBaseUrl })
+
 app.set("views", "./views"),
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/public'));
