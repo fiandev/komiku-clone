@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Comics List</title>
+    <%- include("partials/header") -%>
+  </head>
+  <body>
+    <%- include("partials/nav") -%>
+    <div class="container py-2">
+      <section id="home" class="row gap-2">
+        <div class="col-lg-8">
+          <div class="row">
+            <h1 class="fs-4 text-capitalize">
+              <% if(comics.data.data.length > 1) { %>
+              result for <% if(typeof query !== "undefined") { %> <%= query %> <% } %>
+              <% } else {%>
+              not found result for <% if(typeof query !== "undefined") { %> <%= query %> <% } %>
+              <% } %>
+            </h1>
+            <% for(let i = 0; i < comics.data.data.length; i++) {%>
+            <% let komik = comics.data.data[i] %>
+            <div class="col-md-6 col-lg-6">
+              <div class="d-flex gap-2 latest komik mx-1 mb-1 shadow-sm px-3 py-2 align-items-center position-relative">
+                  <img class="img-fluid thumbnail" style="height:100%" src="<%= komik.thumb %>"  alt="thumbnail" />
+                  <div class="d-flex">
+                  <h1 class="title position-absolute px-2 text-center label shadow-sm" style="background: var(--blue);left:0;top:0">
+                    <a href="#"><%= komik.type %></a>
+                  </h1>
+                  <h1 class="title py-2" style="max-height: 100%;">
+                    <a href="/detail/<%= komik.detail_endpoint %>">
+                      <%= komik.title %>
+                    </a>
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="col-lg-3 ms-auto">
+          <h1 class="fs-4 text-capitalize">
+            popular <% if(typeof type !== "undefined") { %> <%= " in " + type %> <% } %>
+          </h1>
+          <div class="popular side d-flex flex-column">
+            <% for(let i = 0; i < popular.data.data.length; i++){ %>
+              <% let komik = popular.data.data[i] %>
+              <div class="komik mb-2 px-0 py-3 d-flex gap-2">
+                <img class="thumbnail" src="<%= komik.thumb %>" alt="<%= komik.title %>" />
+                <h1 class="title">
+                  <a class="mb-2" href="/read/<%= komik.chapter_endpoint %>">
+                    <%= komik.title %>
+                  </a>
+                <p>type : <span class="fw-bold"><%= komik.type %></span></p>
+                <p>release : <span class="fw-bold"><%= komik.release %></span></p>
+                </h1>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </section>
+      <%- include("partials/footer") -%>
+    </div>
+    <%- include("partials/script") -%>
+  </body>
+</html>

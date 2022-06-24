@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>komiku</title>
+    <%- include("partials/header") -%>
+  </head>
+  <body>
+    <%- include("partials/nav") -%>
+    <div class="container py-2">
+      <section id="detail" class="row gap-3">
+        <div class="col-lg-8">
+          <div class="detail shadow d-flex flex-column align-items-center px-2 py-1">
+            <% let detail = comic.data.data %>
+            <h1 class="title fs-4"><%= detail.title %></h1>
+            <img class="img-fluid mb-2" src="<%= detail.thumb %>" alt="" />
+            <div class="detail d-flex flex-column align-items-start text-capitalize">
+              <p>alternative title : <span class="fw-bold"><%= detail.title_id %></span></p>
+              <p>type : <span class="fw-bold"><%= detail.type %></span></p>
+              <p>status : <span class="fw-bold"><%= detail.status %></span></p>
+              <p>reader : <span class="fw-bold"><%= detail.reader %></span></p>
+              <p>writer : <span class="fw-bold"><%= detail.writer %></span></p>
+              <p>synopsis : <span class="fw-bold"><%= detail.synopsis %></span></p>
+              <p>total chapter : <span class="fw-bold"><%= detail.chapters.length %> chapter</span><p>
+            </div>
+            <div class="w-100 list-chapter d-flex flex-column gap-2 overflow-scroll">
+              <% for(let i = 0; i < detail.chapters.length; i++) { %>
+              <% let ch = detail.chapters[i] %>
+              <div class="d-flex justify-content-between">
+                <p>
+                  <a href="/read/<%= ch.chapter_endpoint %>">
+                    <%= ch.chapter %>
+                  </a>
+                </p>
+                <p><%= ch.date %></p>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 ms-auto">
+          <h1 class="fs-4 text-capitalize">popular</h1>
+          <div class="popular side d-flex flex-column">
+            <% for(let i = 0; i < popular.data.data.length; i++){ %>
+              <% let komik = popular.data.data[i] %>
+              <div class="komik mb-2 px-0 py-3 d-flex gap-2">
+                <img class="thumbnail" src="<%= komik.thumb %>" alt="" />
+                <h1 class="title"><%= komik.title %>
+                <p>type : <span class="fw-bold"><%= komik.type %></span></p>
+                <p>release : <span class="fw-bold"><%= komik.release %></span></p>
+                </h1>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </section>
+      <%- include("partials/footer") -%>
+    </div>
+     <script src='//cdn.jsdelivr.net/npm/eruda'></script>
+  <script>eruda.init();</script>
+  </body>
+</html>

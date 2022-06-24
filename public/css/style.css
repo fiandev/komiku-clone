@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@300&display=swap');
+
+*,p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Anek Tamil', sans-serif;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+:root {
+  --blue: #00ccff;
+}
+.komik {
+  font-weight: normal;
+  
+}
+.read {
+  min-height: auto;
+}
+.paginate-chapter p:hover {
+  background-color: var(--blue);
+}
+#footer .footer {
+  border-top: solid 2px var(--blue);
+}
+/* sm */
+@media (max-width: 575.95px) {
+  .latest {
+    overflow-y: scroll;
+    max-height: 20vh;
+  }
+  .latest .thumbnail {
+    width: 40%;
+    height: 100%;
+  }
+  .latest .title {
+    font-size: 1.2rem;
+  }
+  .latest .label {
+    width: 40%;
+    font-size: .8rem;
+    transform: rotate(-45deg) translateX(-30%) translateY(-20%);
+  }
+  .side .title {
+    font-size: 1.2rem;
+  }
+  .side .thumbnail {
+    width: 30%;
+    border: solid .1px #000;
+  }
+  .list-chapter {
+    max-height: 30vh
+  }
+}
+/* md */
+@media (min-width: 576px) {
+  .latest {
+    max-height: 10vh;
+    overflow-y: scroll;
+  }
+  .latest .thumbnail {
+    width: 40%;
+    height: 100%;
+  }
+  .latest .title {
+    font-size: 1.4rem;
+  }
+  .latest .label {
+    width: 50%;
+    transform: rotate(-45deg) translateX(-30%) translateY(-40%);
+  }
+  .side .title {
+    font-size: 1.4rem;
+  }
+  .side .thumbnail {
+    width: 25%;
+    border: solid .1px #000;
+  }
+  .list-chapter {
+    max-height: 30vh;
+  }
+}
+/* lg */
+@media (min-width: 992px) {
+  .latest {
+    max-height: 25vh;
+    overflow-y: scroll;
+  }
+  .latest .thumbnail {
+    width: 50%;
+    height: 100%;
+  }
+  .latest .title {
+    font-size: 1.2rem;
+  }
+  .latest .label {
+    width: 50%;
+    transform: rotate(-45deg) translateX(-30%) translateY(-20%);
+  }
+  .side .title {
+    font-size: 1rem;
+  }
+  .side .thumbnail {
+    width: 80px;
+    border: solid .1px #000;
+  }
+  .list-chapter {
+    max-height: 65vh;
+  }
+}
