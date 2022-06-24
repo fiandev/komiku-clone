@@ -2,7 +2,7 @@ sebuah program web untuk membaca komik china, korea dan Jepang secara online dan
 
 ### program ini dibuat dengan berikut :
 
-* HTML
+* HTML × Ejs
 * CSS
 * Javascript
 * Express.js
