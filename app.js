@@ -1,15 +1,29 @@
 const express = require("express")
 const axios = require("axios")
 const { apiUrl } = require("./config")
-const { getBaseUrl } = require("./helper/functionz")
 const app = express()
 const port = process.env.PORT || 3600
-app.locals({ getBaseUrl })
 
 app.set("views", "./views"),
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/public'));
 
+app.get("/search/", async (req, res) => {
+  const q = req.query.q
+  console.log(q);
+  let popular;
+  await axios.get(`${apiUrl}/popular`)
+  .then(result => {
+    popular = result
+  })
+  await axios.get(`${apiUrl}/search/${q}`).then(result => {
+    res.render("search", {
+     "query": q,
+     "comics": result,
+     "popular": popular
+    })
+  })
+})
 app.get("/", async (req, res) => {
   let latest = {}, popular = {};
   let thumb;
@@ -82,22 +96,7 @@ app.get("/detail/:slug", async (req, res) => {
   })
 })
 
-app.get("/search", async (req, res) => {
-  const q = req.query.q
-  console.log(q);
-  let popular;
-  await axios.get(`${apiUrl}/popular`)
-  .then(result => {
-    popular = result
-  })
-  await axios.get(`${apiUrl}/search/${q}`).then(result => {
-    res.render("search", {
-     "query": q,
-     "comics": result,
-     "popular": popular
-    })
-  })
-})
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
